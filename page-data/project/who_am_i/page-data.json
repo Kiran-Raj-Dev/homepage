@@ -1,5 +1,0 @@
-{
-    "componentChunkName": "component---src-templates-project-tsx",
-    "path": "/project/who_am_i",
-    "result": {"data":{"markdownRemark":{"html":"","frontmatter":{"date":"March 2021","title":"Who Am I","banner":null}}},"pageContext":{"slug":"who_am_i"}},
-    "staticQueryHashes": ["2082962159"]}

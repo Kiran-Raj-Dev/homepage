@@ -1,5 +1,0 @@
-{
-    "componentChunkName": "component---src-templates-project-tsx",
-    "path": "/project/ohg_plan_parser",
-    "result": {"data":{"markdownRemark":{"html":"","frontmatter":{"date":"November 2019","title":"OHG Plan Parser","banner":null}}},"pageContext":{"slug":"ohg_plan_parser"}},
-    "staticQueryHashes": ["2082962159"]}

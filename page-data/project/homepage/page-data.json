@@ -1,5 +1,0 @@
-{
-    "componentChunkName": "component---src-templates-project-tsx",
-    "path": "/project/homepage",
-    "result": {"data":{"markdownRemark":{"html":"","frontmatter":{"date":"December 2021","title":"Homepage","banner":null}}},"pageContext":{"slug":"homepage"}},
-    "staticQueryHashes": ["2082962159"]}

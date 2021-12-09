@@ -1,5 +1,0 @@
-{
-    "componentChunkName": "component---src-templates-project-tsx",
-    "path": "/project/time_table_planner",
-    "result": {"data":{"markdownRemark":{"html":"","frontmatter":{"date":"March 2020","title":"Time Table Planner","banner":null}}},"pageContext":{"slug":"time_table_planner"}},
-    "staticQueryHashes": ["2082962159"]}

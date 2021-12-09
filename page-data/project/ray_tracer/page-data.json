@@ -1,5 +1,0 @@
-{
-    "componentChunkName": "component---src-templates-project-tsx",
-    "path": "/project/ray_tracer",
-    "result": {"data":{"markdownRemark":{"html":"","frontmatter":{"date":"May 2021","title":"Ray Tracer","banner":null}}},"pageContext":{"slug":"ray_tracer"}},
-    "staticQueryHashes": ["2082962159"]}

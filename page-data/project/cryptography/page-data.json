@@ -1,5 +1,0 @@
-{
-    "componentChunkName": "component---src-templates-project-tsx",
-    "path": "/project/cryptography",
-    "result": {"data":{"markdownRemark":{"html":"","frontmatter":{"date":"December 2020","title":"Cryptography","banner":null}}},"pageContext":{"slug":"cryptography"}},
-    "staticQueryHashes": ["2082962159"]}

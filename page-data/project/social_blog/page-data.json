@@ -1,5 +1,0 @@
-{
-    "componentChunkName": "component---src-templates-project-tsx",
-    "path": "/project/social_blog",
-    "result": {"data":{"markdownRemark":{"html":"","frontmatter":{"date":"October 2020","title":"Social Blog","banner":null}}},"pageContext":{"slug":"social_blog"}},
-    "staticQueryHashes": ["2082962159"]}
