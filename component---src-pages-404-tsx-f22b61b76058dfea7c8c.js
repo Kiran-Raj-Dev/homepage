@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkchris_besch_homepage=self.webpackChunkchris_besch_homepage||[]).push([[218],{938:function(e,t,r){r.r(t);var c=r(7294),o=r(2896);t.default=function(){return c.createElement(o.Z,{heading:"404 Not Found"},c.createElement("iframe",{width:"560",height:"315",src:"https://www.youtube-nocookie.com/embed/2mfi8sTyY30?controls=0",title:"YouTube video player",frameBorder:"0",allow:"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"}))}}}]);
+//# sourceMappingURL=component---src-pages-404-tsx-f22b61b76058dfea7c8c.js.map
