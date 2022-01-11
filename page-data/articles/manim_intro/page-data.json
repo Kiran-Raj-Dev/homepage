@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-article-tsx",
+    "path": "/articles/manim_intro",
+    "result": {"data":{"markdownRemark":{"html":"<p>I like cheese.</p>","frontmatter":{"date":"January 2022","title":"Manim Introduction","description":"From never having touched programming to creating professional graphics with Manim."}}},"pageContext":{"slug":"manim_intro"}},
+    "staticQueryHashes": ["1751226025"]}

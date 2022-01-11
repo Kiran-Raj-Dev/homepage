@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-article-tsx",
+    "path": "/articles/cryptography",
+    "result": {"data":{"markdownRemark":null},"pageContext":{"slug":"cryptography"}},
+    "staticQueryHashes": ["1751226025"]}

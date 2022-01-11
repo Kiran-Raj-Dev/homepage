@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-article-tsx",
+    "path": "/articles/social_blog",
+    "result": {"data":{"markdownRemark":null},"pageContext":{"slug":"social_blog"}},
+    "staticQueryHashes": ["1751226025"]}

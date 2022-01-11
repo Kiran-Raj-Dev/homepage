@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-article-tsx",
+    "path": "/articles/ray_tracer",
+    "result": {"data":{"markdownRemark":null},"pageContext":{"slug":"ray_tracer"}},
+    "staticQueryHashes": ["1751226025"]}
