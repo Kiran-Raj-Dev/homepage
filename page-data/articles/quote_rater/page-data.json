@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-templates-article-tsx",
+    "path": "/articles/quote_rater",
+    "result": {"data":{"markdownRemark":null},"pageContext":{"slug":"quote_rater"}},
+    "staticQueryHashes": ["1751226025"]}
