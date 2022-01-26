@@ -1,5 +1,0 @@
-{
-    "componentChunkName": "component---src-templates-article-tsx",
-    "path": "/articles/who_am_i",
-    "result": {"data":{"markdownRemark":null},"pageContext":{"slug":"who_am_i"}},
-    "staticQueryHashes": ["1751226025"]}
