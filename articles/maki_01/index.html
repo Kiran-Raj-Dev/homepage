@@ -2,11 +2,11 @@
 While these provide the required precision, they suffer from an inherent disconnect between input and output.
 An alternative are WYSIWYG programs, which avoid this detachment with interactivity at the cost of precision.</p><p>The purpose of this article is to outline how a program for interactive and programmatic animation development can be implemented.
 To experiment with different technologies and programming paradigms, I created a developmental implementation called Maki.
-This article analyses Maki&#x27;s design and evaluates the feasibility of its inclusion in an already existing animation framework.</p><h1>Maki</h1><p>The goal of Maki is to allow the user to specify 3D animations using Python.
+This article analyses Maki&#x27;s design and evaluates the feasibility of its inclusion in an already existing animation framework.</p><h1>Maki</h1><p>The goal of Maki is to allow the user to create 3D animations using Python.
 While the user is constructing their animation in an interactive shell, Maki shows the current status of the animation in a separate window.
 The user is able to freely move the camera in that window.
-In addition to that, Maki provides the ability to <em>jump in time</em>.
-This can be used to show an arbitrary frame of the animation or even reverse its flow of time.</p><h1>Atoms</h1><p>Just like how real atoms were thought to be the indivisible unit of the universe <code>Atom</code>s are the smallest renderable unit in Maki.
+In addition to that, Maki provides the ability to <em>jump in time</em>;
+The use can decide which frame of the animation should be played.</p><h1>Atoms</h1><p>Just like how real atoms were thought to be the indivisible unit of the universe <code>Atom</code>s are the smallest renderable unit in Maki.
 A collection of them form a frame, multiple of which form an entire scene that can be rendered to a video file.
 The first frame is frame <code>0</code>.
 It cannot display anything as it is used as the foundation for any following frames.
