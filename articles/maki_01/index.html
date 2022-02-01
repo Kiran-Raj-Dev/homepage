@@ -226,17 +226,20 @@ To fix this Maki performs a chrono sync.
 This means that the render atom chain evicts all of it&#x27;s data and recreates all atoms.
 Therefore it points at the 0th frame.
 Since this frame can&#x27;t contain any atom diffs, the render thread is synchronised again.
-To get back to where the render atom chain left off, it can use the already explained <code>set_frame</code> member function.</p><h2 id="templated-memory" style="position:relative">Templated Memory<a href="#templated-memory" aria-label="templated memory permalink" class="anchor after"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2><p>The <code>AtomDispenser</code> gives birth to <code>Atoms</code> and <code>AtomDiffs</code> besides owning one <code>AtomDiffLifetime</code> and all <code>AtomChains</code> for each type of <code>Atom</code>.
-Multiple templated member functions are being used to access the correct ones.</p><pre><code class="language-cpp">class AtomDispenser {
-
+To get back to where the render atom chain left off, it can use the already explained <code>set_frame</code> member function.</p><h2 id="templated-memory" style="position:relative">Templated Memory<a href="#templated-memory" aria-label="templated memory permalink" class="anchor after"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2><p>All functions and classes handling atoms are templated, so that all kinds of atoms can be accepted.
+But that also means that each <code>AtomDiffLifetime</code> can only handle one type of atom.
+Therefore multiple <code>AtomDiffLifetime</code>s are required to express the entire breadth of atom types.
+To conveniently access the correct <code>AtomDiffLifetime</code>, &quot;templated memory&quot; is used:</p><pre><code class="language-cpp">class AtomDispenser {
     ...
-
+    // general declaration
     template&lt;typename AtomType&gt;
     AtomDiffLifetime&lt;AtomType&gt;&amp; get_diff_lifetime();
-    
-    ...
+
+    AtomDiffLifetime&lt;CuboidAtom&gt;        m_cuboid_diff_lifetime {};
+    AtomDiffLifetime&lt;QuadrilateralAtom&gt; m_quadrilateral_diff_lifetime {};
 };
 
+// specializations //
 // for CuboidAtoms
 template&lt;&gt;
 inline AtomDiffLifetime&lt;CuboidAtom&gt;&amp; AtomDispenser::get_diff_lifetime&lt;CuboidAtom&gt;()
@@ -249,7 +252,11 @@ inline AtomDiffLifetime&lt;QuadrilateralAtom&gt;&amp; AtomDispenser::get_diff_li
 {
     return m_quadrilateral_diff_lifetime;
 }
-</code></pre><h2 id="rendering-atoms" style="position:relative">Rendering Atoms<a href="#rendering-atoms" aria-label="rendering atoms permalink" class="anchor after"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2><p>An <code>AtomRenderer</code> uses the underlying rendering abstraction to actually render an <code>Atom</code>.
+</code></pre><p>The function <code>AtomDiffLifetime&lt;AtomType&gt;&amp; get_diff_lifetime()</code> is actually nowhere defined.
+Only the specialized versions are defined, like <code>AtomDiffLifetime&lt;QuadrilateralAtom&gt;&amp; AtomDispenser::get_diff_lifetime&lt;QuadrilateralAtom&gt;</code>
+As you can see the general type <code>AtomType</code> has been specialized with <code>QuadrilateralAtom</code>.
+This way the templating system decides which definition should be called or fails when there is no specialization for the requested type.
+That way templated memory can be implemented.</p><h2 id="rendering-atoms" style="position:relative">Rendering Atoms<a href="#rendering-atoms" aria-label="rendering atoms permalink" class="anchor after"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a></h2><p>An <code>AtomRenderer</code> uses the underlying rendering abstraction to actually render an <code>Atom</code>.
 The implementation of such may vary wildly as each <code>Atom</code> has a different optimal way of being rendered.
 While some may use a common base class (like the <code>BatchRenderer</code>) others stand on their own.</p><p>The <code>AtomRendererRouter</code> is unfortunately needed to make these different implementations accessible from the templated world of <code>Atom</code>s.</p><pre><code class="language-cpp">template&lt;typename AtomType&gt;
 struct AtomRendererRouter {
